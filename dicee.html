@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dicee</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <h1>Dicee</h1>
+
+    <div class="mode-switch player-two">
+
+      <button id="twoPlayerBtn" class="mode-btn active">
+        <span>👥</span>
+        <span>2 Player</span>
+      </button>
+
+
+      <button id="onePlayerBtn" class="mode-btn">
+        <span>🤖</span>
+        <span>1 Player</span>
+      </button>
+
+
+      <button id="soloPlayerBtn" class="mode-btn">
+        <span>🎲</span>
+        <span>Solo</span>
+      </button>
+
+    </div>
+
+    <div id="twoPlayerMode" class="game-mode">
+
+      <div class="dice">
+
+        <p>Player 1</p>
+
+        <img class="img1" src="images/dice6.png" alt="Player 1 Dice" />
+
+      </div>
+
+      <div class="dice">
+
+        <p>Player 2</p>
+
+        <img class="img2" src="images/dice6.png" alt="Player 2 Dice" />
+
+      </div>
+
+    </div>
+
+    <div id="onePlayerMode" class="game-mode hidden">
+
+      <div class="dice">
+
+        <p>You</p>
+
+        <img class="imgPlayer" src="images/dice6.png" alt="Player Dice" />
+
+      </div>
+
+      <div class="dice">
+
+        <p>Computer</p>
+
+        <img class="imgComputer" src="images/dice6.png" alt="Computer Dice" />
+
+      </div>
+
+    </div>
+
+    <div id="soloPlayerMode" class="game-mode hidden">
+
+      <div class="dice">
+
+        <p>You</p>
+
+        <img class="imgSolo" src="images/dice6.png" alt="Solo Player Dice" />
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    𐙚 alya's dice 𐙚
+  </footer>
+
+  <script src="index.js"></script>
+
+</body>
+
+</html>

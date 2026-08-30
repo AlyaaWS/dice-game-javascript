@@ -1,0 +1,286 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #232931, #393e46);
+  color: #eeeeee;
+  font-family: "Fredoka", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 25px 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 22px;
+  text-align: center;
+  font-family: "Lilita One", cursive;
+  font-size: clamp(3.4rem, 6vw, 5.5rem);
+  line-height: 1;
+  color: #4ecca3;
+  text-shadow: 3px 3px 0 #181c22;
+  transition: 0.3s ease;
+}
+
+.mode-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  max-width: 90%;
+  height: 48px;
+  padding: 4px;
+  margin: 0 auto 40px;
+  margin-top: 40px;
+  background: #181c22;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+}
+
+.mode-btn {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #858991;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.mode-btn span:first-child {
+  font-size: 0.9rem;
+}
+
+.mode-btn.active {
+  color: #181c22;
+}
+
+.mode-btn:hover {
+  color: #eeeeee;
+}
+
+.mode-btn.active:hover {
+  color: #181c22;
+}
+
+.mode-switch::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 3);
+  background: #8fffc1;
+  border-radius: 12px;
+  transition: transform 0.35s cubic-bezier(0.68, -0.2, 0.265, 1.2);
+  box-shadow: 0 3px 10px rgba(255, 225, 143, 0.25);
+}
+
+.mode-switch.player-two::before {
+  transform: translateX(0);
+}
+
+.mode-switch.player-one::before {
+  transform: translateX(100%);
+}
+
+.mode-switch.player-solo::before {
+  transform: translateX(200%);
+}
+
+.game-mode {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+
+.hidden {
+  display: none;
+}
+
+.dice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dice:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+p {
+  margin: 0 0 18px;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #eeeeee;
+  font-family: "Fredoka", sans-serif;
+}
+
+.dice img {
+  display: block;
+  width: 145px;
+  height: 145px;
+  object-fit: contain;
+  border-radius: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.dice img:hover {
+  transform: scale(1.05);
+}
+
+.dice img.roll {
+  animation: rollDice 0.5s ease;
+}
+
+@keyframes rollDice {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: rotate(90deg) scale(1.08);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1);
+  }
+
+  75% {
+    transform: rotate(270deg) scale(1.08);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+footer {
+  width: 100%;
+  padding: 12px 20px 18px;
+  text-align: center;
+  color: #aaaaaa;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mode-switch {
+    margin-bottom: 30px;
+  }
+
+  .game-mode {
+    gap: 20px;
+  }
+
+  .dice {
+    width: 220px;
+    padding: 16px;
+  }
+
+  .dice img {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 550px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 18px;
+  }
+
+  .mode-switch {
+    width: 100%;
+    max-width: 380px;
+    height: 44px;
+    margin-bottom: 25px;
+  }
+
+  .mode-btn {
+    height: 36px;
+    font-size: 0.95rem;
+  }
+
+  .mode-btn span:first-child {
+    font-size: 0.8rem;
+  }
+
+  .game-mode {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .dice {
+    width: 200px;
+    padding: 14px;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .dice img {
+    width: 115px;
+    height: 115px;
+  }
+
+  footer {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
