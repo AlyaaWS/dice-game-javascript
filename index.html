@@ -2,22 +2,43 @@
 <html lang="en">
 
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z74QB029QB"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z74QB029QV"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+
+    gtag("config", "G-Z74QB029QV");
+  </script>
+
   <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Dicee</title>
 
-  <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&display=swap"
-    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&display=swap"
+    rel="stylesheet"
+  />
+
 </head>
 
 <body>
-
 
   <div class="container">
 
@@ -25,32 +46,46 @@
 
     <div class="mode-switch player-two">
 
-      <button id="twoPlayerBtn" class="mode-btn active">
+      <button
+        id="twoPlayerBtn"
+        class="mode-btn active"
+      >
         <span>👥</span>
         <span>2 Player</span>
       </button>
 
-
-      <button id="onePlayerBtn" class="mode-btn">
+      <button
+        id="onePlayerBtn"
+        class="mode-btn"
+      >
         <span>🤖</span>
         <span>1 Player</span>
       </button>
 
-
-      <button id="soloPlayerBtn" class="mode-btn">
+      <button
+        id="soloPlayerBtn"
+        class="mode-btn"
+      >
         <span>🎲</span>
         <span>Solo</span>
       </button>
 
     </div>
 
-    <div id="twoPlayerMode" class="game-mode">
+    <div
+      id="twoPlayerMode"
+      class="game-mode"
+    >
 
       <div class="dice">
 
         <p>Player 1</p>
 
-        <img class="img1" src="images/dice6.png" alt="Player 1 Dice" />
+        <img
+          class="img1"
+          src="images/dice6.png"
+          alt="Player 1 Dice"
+        />
 
       </div>
 
@@ -58,19 +93,30 @@
 
         <p>Player 2</p>
 
-        <img class="img2" src="images/dice6.png" alt="Player 2 Dice" />
+        <img
+          class="img2"
+          src="images/dice6.png"
+          alt="Player 2 Dice"
+        />
 
       </div>
 
     </div>
 
-    <div id="onePlayerMode" class="game-mode hidden">
+    <div
+      id="onePlayerMode"
+      class="game-mode hidden"
+    >
 
       <div class="dice">
 
         <p>You</p>
 
-        <img class="imgPlayer" src="images/dice6.png" alt="Player Dice" />
+        <img
+          class="imgPlayer"
+          src="images/dice6.png"
+          alt="Player Dice"
+        />
 
       </div>
 
@@ -78,19 +124,30 @@
 
         <p>Computer</p>
 
-        <img class="imgComputer" src="images/dice6.png" alt="Computer Dice" />
+        <img
+          class="imgComputer"
+          src="images/dice6.png"
+          alt="Computer Dice"
+        />
 
       </div>
 
     </div>
 
-    <div id="soloPlayerMode" class="game-mode hidden">
+    <div
+      id="soloPlayerMode"
+      class="game-mode hidden"
+    >
 
       <div class="dice">
 
         <p>You</p>
 
-        <img class="imgSolo" src="images/dice6.png" alt="Solo Player Dice" />
+        <img
+          class="imgSolo"
+          src="images/dice6.png"
+          alt="Solo Player Dice"
+        />
 
       </div>
 
