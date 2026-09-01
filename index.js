@@ -28,17 +28,19 @@ var image1 =
 var image2 =
   document.querySelector(".img2");
 
-
 var randomNumber1 = 6;
 
 var randomNumber2 = 6;
+
+var player1Rolled = false;
+
+var player2Rolled = false;
 
 var imgPlayer =
   document.querySelector(".imgPlayer");
 
 var imgComputer =
   document.querySelector(".imgComputer");
-
 
 var playerNumber = 6;
 
@@ -47,14 +49,19 @@ var computerNumber = 6;
 var imgSolo =
   document.querySelector(".imgSolo");
 
-
 var soloNumber = 6;
+
+
+function trackEvent(eventName, parameters) {
+  if (typeof gtag === "function") {
+    gtag("event", eventName, parameters);
+  }
+}
 
 
 twoPlayerBtn.addEventListener(
   "click",
   function () {
-
 
     twoPlayerBtn.classList.add(
       "active"
@@ -91,6 +98,13 @@ twoPlayerBtn.addEventListener(
 
     heading.innerHTML =
       "Dicee";
+
+    trackEvent(
+      "game_mode_selected",
+      {
+        mode: "2_player"
+      }
+    );
   }
 );
 
@@ -134,6 +148,13 @@ onePlayerBtn.addEventListener(
 
     heading.innerHTML =
       "Dicee";
+
+    trackEvent(
+      "game_mode_selected",
+      {
+        mode: "1_player"
+      }
+    );
   }
 );
 
@@ -177,6 +198,13 @@ soloPlayerBtn.addEventListener(
 
     heading.innerHTML =
       "Solo Dice";
+
+    trackEvent(
+      "game_mode_selected",
+      {
+        mode: "solo"
+      }
+    );
   }
 );
 
@@ -184,9 +212,20 @@ soloPlayerBtn.addEventListener(
 function checkTwoPlayerWinner() {
 
   if (
+    !player1Rolled ||
+    !player2Rolled
+  ) {
+    return;
+  }
+
+  var result;
+
+  if (
     randomNumber1 >
     randomNumber2
   ) {
+
+    result = "player_1";
 
     heading.innerHTML =
       "Player 1 Wins! 🎉";
@@ -198,6 +237,8 @@ function checkTwoPlayerWinner() {
     randomNumber1
   ) {
 
+    result = "player_2";
+
     heading.innerHTML =
       "Player 2 Wins! 🎉";
 
@@ -205,19 +246,38 @@ function checkTwoPlayerWinner() {
 
   else {
 
+    result = "draw";
+
     heading.innerHTML =
       "Draw!";
 
   }
+
+  trackEvent(
+    "game_completed",
+    {
+      mode: "2_player",
+      result: result,
+      player_1_score: randomNumber1,
+      player_2_score: randomNumber2
+    }
+  );
+
+  player1Rolled = false;
+  player2Rolled = false;
 }
 
 
 function checkOnePlayerWinner() {
 
+  var result;
+
   if (
     playerNumber >
     computerNumber
   ) {
+
+    result = "player";
 
     heading.innerHTML =
       "You Win! 🎉";
@@ -229,6 +289,8 @@ function checkOnePlayerWinner() {
     playerNumber
   ) {
 
+    result = "computer";
+
     heading.innerHTML =
       "Computer Wins! 🤖";
 
@@ -236,16 +298,29 @@ function checkOnePlayerWinner() {
 
   else {
 
+    result = "draw";
+
     heading.innerHTML =
       "Draw!";
 
   }
+
+  trackEvent(
+    "game_completed",
+    {
+      mode: "1_player",
+      result: result,
+      player_score: playerNumber,
+      computer_score: computerNumber
+    }
+  );
 }
 
 
 function rollDice(
   image,
-  callback
+  callback,
+  analyticsData
 ) {
 
   image.classList.remove(
@@ -262,6 +337,15 @@ function rollDice(
     Math.floor(
       Math.random() * 6
     ) + 1;
+
+  trackEvent(
+    "dice_roll",
+    {
+      mode: analyticsData.mode,
+      player: analyticsData.player,
+      result: randomNumber
+    }
+  );
 
   setTimeout(
     function () {
@@ -294,14 +378,21 @@ image1.addEventListener(
         randomNumber1 =
           number;
 
+        player1Rolled =
+          true;
 
         checkTwoPlayerWinner();
 
+      },
+      {
+        mode: "2_player",
+        player: "player_1"
       }
     );
 
   }
 );
+
 
 image2.addEventListener(
   "click",
@@ -314,20 +405,32 @@ image2.addEventListener(
         randomNumber2 =
           number;
 
+        player2Rolled =
+          true;
 
         checkTwoPlayerWinner();
 
+      },
+      {
+        mode: "2_player",
+        player: "player_2"
       }
     );
 
   }
 );
 
+
 imgPlayer.addEventListener(
   "click",
   function () {
 
-    // Player rolls first
+    trackEvent(
+      "game_started",
+      {
+        mode: "1_player"
+      }
+    );
 
     rollDice(
       imgPlayer,
@@ -346,9 +449,12 @@ imgPlayer.addEventListener(
                 computerNumber =
                   number;
 
-
                 checkOnePlayerWinner();
 
+              },
+              {
+                mode: "1_player",
+                player: "computer"
               }
             );
 
@@ -356,6 +462,10 @@ imgPlayer.addEventListener(
           150
         );
 
+      },
+      {
+        mode: "1_player",
+        player: "player"
       }
     );
 
@@ -374,12 +484,23 @@ imgSolo.addEventListener(
         soloNumber =
           number;
 
-
         heading.innerHTML =
           "You rolled " +
           number +
           "! 🎲";
 
+        trackEvent(
+          "solo_game_completed",
+          {
+            mode: "solo",
+            result: number
+          }
+        );
+
+      },
+      {
+        mode: "solo",
+        player: "solo"
       }
     );
 
